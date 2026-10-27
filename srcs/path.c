@@ -1,9 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path.c                                                 :+:      :+:    :+:   */
+/*                                                    :+:      :+:    :+:   */
+/*   By: Amr Khedr (ELITE AKV) <amr.f.khedr@gmail.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/28 01:00:00 by akhedr            #+#    #+#             */
+/*   Updated: 2026/10/28 01:00:00 by akhedr           ###   ########.fr       */
+/*                                                                            */
+/*   Copyright (c) 2026 Amr Khedr. All Rights Reserved.                      */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amrkhedr <amrkhedr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/30 00:00:00 by amrkhedr          #+#    #+#             */
+/*   Updated: 2026/03/30 00:00:00 by amrkhedr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*get_env_value(char **envp, const char *key)
 {
-	int		i;
-	size_t	len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = strlen(key);
@@ -21,11 +46,10 @@ char	*find_command_path(char *cmd, char **envp)
 	char	*path_env;
 	char	*path_copy;
 	char	*dir;
-	char	full_path[1024];
+	char	full_path[1024];  
+	struct stat	st;
 
-	if (!cmd || !*cmd)
-		return (NULL);
-	if (strchr(cmd, '/') || access(cmd, X_OK) == 0)
+	if (strchr(cmd, '/'))
 		return (strdup(cmd));
 	path_env = get_env_value(envp, "PATH");
 	if (!path_env)
@@ -35,7 +59,7 @@ char	*find_command_path(char *cmd, char **envp)
 	while (dir)
 	{
 		snprintf(full_path, sizeof(full_path), "%s/%s", dir, cmd);
-		if (access(full_path, X_OK) == 0)
+		if (stat(full_path, &st) == 0)
 		{
 			free(path_copy);
 			return (strdup(full_path));

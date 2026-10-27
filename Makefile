@@ -3,7 +3,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude
 
-SRCS = srcs/main.c srcs/builtins.c srcs/path.c srcs/executor.c
+SRCS = srcs/main.c srcs/builtins.c srcs/path.c srcs/executor.c srcs/executor_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
