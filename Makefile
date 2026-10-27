@@ -1,9 +1,9 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Iinclude
 
-SRCS = srcs/main.c
+SRCS = srcs/main.c srcs/builtins.c srcs/path.c srcs/executor.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

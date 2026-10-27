@@ -1,0 +1,8 @@
+total 40
+-rw-r--r-- 1 AK AK   324 Oct 26 22:27 Makefile
+drwxr-xr-x 2 AK AK  4096 Oct 26 22:25 include
+-rwxr-xr-x 1 AK AK 21376 Oct 27 10:01 minishell
+drwxr-xr-x 2 AK AK  4096 Oct 26 22:15 objs
+-rw-r--r-- 1 AK AK     0 Oct 27 10:02 output.txt
+drwxr-xr-x 2 AK AK  4096 Oct 27 10:01 srcs
+"42 School"
